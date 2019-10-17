@@ -1,36 +1,82 @@
-# springcloudAlibaba
+# 阿里springcloud及部分组件
 
-#### Description
-springcloud Alibaba+nacos+dubbo+gateway+ribbon
+#### 项目简介
+1.主要技术栈：springcloud Alibaba+nacos+dubbo+gateway+ribbon。
+2.注册中心是用nacos，下载地址：https://github.com/alibaba/nacos/releases
 
-#### Software Architecture
-Software architecture description
+#### 项目结构
+aliCloudTest
+├── api-gateway      -- 网关
+├── api-service      -- 对外开放api接口
+├── api-service2     -- 对外开放api接口(模拟集群环境)
+├── user-center      -- 用户详细信息服务
+├── user-login       -- 用户登录服务
+└── user-login2      -- 用户登录服务(模拟集群环境)
 
-#### Installation
+#### 安装
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+1.  nacos安装需要依赖jdk环境，且java环境变量必须配置%JAVA_HOME%变量，负责nacos无法启动(如果配置了仍无法启动，重启再试)。
+2.  如果启动过程报错，清理下maven包环境。
+3.  数据库推荐是用mysq5.7以上版本。
 
-#### Instructions
+#### SQL导入语句
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+1.  用户详细信息表结构及mock数据：
+    SET NAMES utf8mb4;
+    SET FOREIGN_KEY_CHECKS = 0;
+    
+    -- ----------------------------
+    -- Table structure for user_info
+    -- ----------------------------
+    DROP TABLE IF EXISTS `user_info`;
+    CREATE TABLE `user_info`  (
+      `id` bigint(20) NOT NULL AUTO_INCREMENT,
+      `user_id` bigint(20) NULL DEFAULT NULL COMMENT '用户id',
+      `true_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '' COMMENT '真实姓名',
+      PRIMARY KEY (`id`) USING BTREE
+    ) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+    
+    -- ----------------------------
+    -- Records of user_info
+    -- ----------------------------
+    INSERT INTO `user_info` VALUES (1, 1, '甘道夫');
+    
+    SET FOREIGN_KEY_CHECKS = 1;
 
-#### Contribution
-
-1.  Fork the repository
-2.  Create Feat_xxx branch
-3.  Commit your code
-4.  Create Pull Request
-
-
-#### Gitee Feature
-
-1.  You can use Readme\_XXX.md to support different languages, such as Readme\_en.md, Readme\_zh.md
-2.  Gitee blog [blog.gitee.com](https://blog.gitee.com)
-3.  Explore open source project [https://gitee.com/explore](https://gitee.com/explore)
-4.  The most valuable open source project [GVP](https://gitee.com/gvp)
-5.  The manual of Gitee [https://gitee.com/help](https://gitee.com/help)
-6.  The most popular members  [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
+2.  用户登录用户名记密码表结构及mock数据：
+    /*
+     Navicat Premium Data Transfer
+    
+     Source Server         : Localhost_mysql8
+     Source Server Type    : MySQL
+     Source Server Version : 80017
+     Source Host           : localhost:3307
+     Source Schema         : usercenter
+    
+     Target Server Type    : MySQL
+     Target Server Version : 80017
+     File Encoding         : 65001
+    
+     Date: 16/10/2019 18:18:48
+    */
+    
+    SET NAMES utf8mb4;
+    SET FOREIGN_KEY_CHECKS = 0;
+    
+    -- ----------------------------
+    -- Table structure for user_login
+    -- ----------------------------
+    DROP TABLE IF EXISTS `user_login`;
+    CREATE TABLE `user_login`  (
+      `id` bigint(20) NOT NULL AUTO_INCREMENT,
+      `user_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '' COMMENT '登录用户名',
+      `user_password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT '' COMMENT '登录密码(暂不做MD5加密)',
+      PRIMARY KEY (`id`) USING BTREE
+    ) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+    
+    -- ----------------------------
+    -- Records of user_login
+    -- ----------------------------
+    INSERT INTO `user_login` VALUES (1, 'test', '1234');
+    
+    SET FOREIGN_KEY_CHECKS = 1;
