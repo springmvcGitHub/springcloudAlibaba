@@ -1,0 +1,29 @@
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+        enabled: true
+        register-enabled: true
+      config:
+        server-addr: 127.0.0.1:8848
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: login-router    #随意，方便记忆并且在所有路由定义中唯一即可
+          uri: lb://user-api-service   # lb://为固定写法，表示开启负载均衡
+          predicates:
+            - Path=/gateway/**
+          filters:
+            - StripPrefix=1
+  application:
+    name: api-gateway-service
+#  main:
+#    allow-bean-definition-overriding: true    #解决bean重复定义的。设置为true时，后定义的bean会覆盖之前定义的相同名称的bean。(问题点1：这里要考虑双亲委派和重复加载会不会导致后续的问题？)
+user-api-service:     #该方式有个弊端，当集群节点离线后，不会自动从访问列表中剔除，自定义一个心跳服务并且用实现IPing接口可以实现动态离线
+  ribbon:
+    listOfServers: localhost:8001, localhost:8002
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RoundRobinRule
+    NFLoadBalancerPingClassName: com.aliCloud.api.config.HealthExamination
