@@ -43,23 +43,7 @@ aliCloudTest
     
     SET FOREIGN_KEY_CHECKS = 1;
 
-2.  用户登录用户名记密码表结构及mock数据：
-    /*
-     Navicat Premium Data Transfer
-    
-     Source Server         : Localhost_mysql8
-     Source Server Type    : MySQL
-     Source Server Version : 80017
-     Source Host           : localhost:3307
-     Source Schema         : usercenter
-    
-     Target Server Type    : MySQL
-     Target Server Version : 80017
-     File Encoding         : 65001
-    
-     Date: 16/10/2019 18:18:48
-    */
-    
+2.  用户登录用户名记密码表结构及mock数据： 
     SET NAMES utf8mb4;
     SET FOREIGN_KEY_CHECKS = 0;
     
