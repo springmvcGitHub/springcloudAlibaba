@@ -1,0 +1,31 @@
+spring:
+  profiles:
+    active: dev
+  datasource:
+    url:  jdbc:mysql://localhost:3307/usercenter?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&failOverReadOnly=false&zeroDateTimeBehavior=convertToNull&useSSL=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: 1111q!
+    driver-class-name: com.mysql.cj.jdbc.Driver #使用官方最新驱动包
+    hikari:
+      minimum-idle: 5   #最小空闲连接数量
+      maximum-pool-size: 20   # 连接池最大连接数，默认是10
+dubbo:
+  scan:
+    base-packages: com.aliCloud.api.provider   #指定 Dubbo 服务实现类的扫描基准包
+  protocols:
+    dubbo:
+      name: dubbo   #Dubbo 服务暴露的协议配置，其中子属性 name 为协议名称，port 为协议端口（ -1 表示自增端口，从 20880 开始）
+      port: -1
+  registry:
+    address: spring-cloud://localhost
+  application:
+    qos:
+      enable: false
+#  cloud:
+#    subscribed-services: user-center-service-server
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  mapper-locations: classpath:com/aliCloud/api/mapper/*.xml
+server:
+  port: 5001

@@ -1,0 +1,9 @@
+server:
+  port: 8082
+dubbo:
+  registry:
+    address: spring-cloud://localhost
+  application:
+    qos-enable: false
+  cloud:
+    subscribed-services: user-login-service,user-center-service
