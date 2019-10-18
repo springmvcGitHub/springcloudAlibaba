@@ -1,7 +1,7 @@
 # 阿里springcloud及部分组件
  
 #### 项目简介
-1.主要技术栈：   springcloud Alibaba+nacos+dubbo+gateway+ribbon。  
+1.主要技术栈：   springcloud Alibaba+nacos+dubbo+gateway+ribbon+sentinel。  
 2.注册中心是用nacos，下载地址：https://github.com/alibaba/nacos/releases  
 3.nacos动态刷新配置用了两种方式：  
     **[api-service]** 用的是nacos-config-spring-boot-starter的实现，可以动态指定nacos配置界面中的data-id(可以随意取data-id的名
@@ -12,6 +12,9 @@
         的data-id是user-api-service.yaml，那么其详情中的配置格式必须选择yaml)。应用启动时日志中会暴露是否加载了nacos中的
         配置，且nacos中的配置更新的时候，当前应用中会打印刷新日志。  
     这两种方式引入的包是不同的，且不能同时引入，目前看是会冲突的。个人推荐使用第二种。  
+4.已集成sentinel，目前可以实现限流功能，代码亲测可用，sentinel版本1.6.3，该版本只提供了jar刚方式，故需要配置jdk环境，如果
+    配置好了可以直接使用java -jar启动，默认端口8080(也可以pull release版本的代码自定义端口启动)。
+    下载地址：https://github.com/alibaba/Sentinel/releases
 4.gateway根据nacos动态刷新路由已完成，代码中已实现。  
 * 配置demo(nacos控制台的配置内容)：  
     data-id:api-gateway-service.json  
