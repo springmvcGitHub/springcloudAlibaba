@@ -9,8 +9,11 @@ spring:
         server-addr: 127.0.0.1:8848
         enabled: true
         register-enabled: true
-      config:
-        server-addr: 127.0.0.1:8848
+#      config:
+#        server-addr: 127.0.0.1:8848
+    sentinel:
+      transport:
+        dashboard: 127.0.0.1:8080
   application:
     name: user-api-service
   main:
