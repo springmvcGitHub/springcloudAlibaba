@@ -24,7 +24,8 @@ spring:
 #  main:
 #    allow-bean-definition-overriding: true    #解决bean重复定义的。设置为true时，后定义的bean会覆盖之前定义的相同名称的bean。(问题点1：这里要考虑双亲委派和重复加载会不会导致后续的问题？)
 user-api-service:     #该方式有个弊端，当集群节点离线后，不会自动从访问列表中剔除，自定义一个心跳服务并且用实现IPing接口可以实现动态离线
-  ribbon:
+  ribbon:       #如果单独使用Ribbon，在默认情况下，不会激活Ping机制，默认的实现类为DummyPing
     listOfServers: localhost:8001, localhost:8002
     NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RoundRobinRule
-    NFLoadBalancerPingClassName: com.aliCloud.api.config.HealthExamination
+    NFLoadBalancerPingClassName: com.aliCloud.api.config.HealthExamination    #自定义的心跳检测类
+    NFLoadBalancerPingInterval: 5  #发送心跳的时间间隔，单位是秒

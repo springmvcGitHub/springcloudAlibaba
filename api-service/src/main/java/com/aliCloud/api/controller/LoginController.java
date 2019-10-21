@@ -5,6 +5,7 @@ import com.aliCloud.api.pojo.dto.UserLoginDto;
 import com.aliCloud.api.provider.IUserCenterProvider;
 import com.aliCloud.api.provider.IUserLoginProvider;
 import com.alibaba.nacos.api.config.annotation.NacosValue;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,6 +23,7 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("/login")
+@Slf4j
 public class LoginController {
 
     @Reference
@@ -33,7 +35,7 @@ public class LoginController {
 
     @GetMapping(value = "login")
     public Map<String, Object> login(@RequestParam String userName, @RequestParam String password) {
-        System.out.println("--------------userController1-----------------,testKey:" + testKey);
+        log.info("--------------userController1-----------------,testKey:" + testKey);
         Map<String, Object> result = new HashMap<>();
         UserLoginDto userDto = loginProvider.getLoginUser(userName, password);
         if (null == userDto) {
@@ -54,7 +56,7 @@ public class LoginController {
             return result;
         }
         result.put("success", true);
-        result.put("msg", userInfoDto.getTrueName() + "，欢迎登陆！");
+        result.put("msg", userInfoDto.getTrueName() + "1，欢迎登陆！");
         return result;
     }
 

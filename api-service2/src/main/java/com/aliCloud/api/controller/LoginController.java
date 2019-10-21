@@ -4,6 +4,7 @@ import com.aliCloud.api.pojo.dto.UserInfoDto;
 import com.aliCloud.api.pojo.dto.UserLoginDto;
 import com.aliCloud.api.provider.IUserCenterProvider;
 import com.aliCloud.api.provider.IUserLoginProvider;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.beans.factory.annotation.Value;
@@ -23,6 +24,7 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("/login")
+@Slf4j
 @RefreshScope
 public class LoginController {
 
@@ -36,7 +38,7 @@ public class LoginController {
 
     @GetMapping(value = "login")
     public Map<String, Object> login(@RequestParam String userName, @RequestParam String password) {
-        System.out.println("--------------userController2-----------------,testKey:" + testKey);
+        log.info("--------------userController2-----------------,testKey:" + testKey);
         Map<String, Object> result = new HashMap<>();
         UserLoginDto userDto = loginProvider.getLoginUser(userName, password);
         if (null == userDto) {
@@ -57,7 +59,7 @@ public class LoginController {
             return result;
         }
         result.put("success", true);
-        result.put("msg", userInfoDto.getTrueName() + "，欢迎登陆！");
+        result.put("msg", userInfoDto.getTrueName() + "2，欢迎登陆！");
         return result;
     }
 

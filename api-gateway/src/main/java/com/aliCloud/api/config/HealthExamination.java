@@ -2,6 +2,7 @@ package com.aliCloud.api.config;
 
 import com.netflix.loadbalancer.IPing;
 import com.netflix.loadbalancer.Server;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
@@ -15,6 +16,7 @@ import javax.annotation.Resource;
  * Description:
  */
 @Component
+@Slf4j
 public class HealthExamination implements IPing {
 
     @Resource
@@ -26,13 +28,13 @@ public class HealthExamination implements IPing {
         try {
             ResponseEntity<String> heath = restTemplate.getForEntity(url, String.class);
             if (heath.getStatusCode() == HttpStatus.OK) {
-                System.out.println("ping " + url + " success and response is " + heath.getBody());
+                log.info("ping " + url + " success and response is " + heath.getBody());
                 return true;
             }
-            System.out.println("ping " + url + " error and response is " + heath.getBody());
+            log.info("ping " + url + " error and response is " + heath.getBody());
             return false;
         } catch (Exception e) {
-            System.out.println("ping " + url + " failed");
+            log.info("ping " + url + " failed");
             return false;
         }
     }

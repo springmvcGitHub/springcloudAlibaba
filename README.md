@@ -20,18 +20,24 @@
     data-id:api-gateway-service.json  
     group:DEFAULT_GROUP    (默认的)  
     配置内容：  
-    `[{  
-        "id": "router1",  
-       	"uri": "http://127.0.0.1:8081",  
-       	"order": 0,  
-       	"filters": [],  
-       	"predicates": [{  
-       		"args": {  
-       			"pattern": "/**"  
-       		},  
-       		"name": "Path"  
-       	}]  
-       }]`
+    `[{
+     	"id": "router1",
+     	"uri": "lb://user-api-service",
+     	"order": 0,
+     	"filters": [{
+              "args": {
+                 "parts": "1"
+             },
+             "name": "StripPrefix"
+         }],
+     	"predicates": [{
+     		"args": {
+     			"pattern": "/test/**"
+     		},
+     		"name": "Path"
+     	}]
+     }]`
+     uri使用了负载均衡，但是对应的定义"user-api-service"需要提前现在配置文件中声明。
 * 该配置的意思是访问http://localhost:8084/所有请求都会被转发到127.0.0.1:8081上(api-service)上，亲测可用，示例地址：
     http://localhost:8084/login/login?userName=test&password=1234，而且该配置不会影响gateway中已经配置在bootstrap中(还是
     会负载均衡到8081和8082上)。  
@@ -97,3 +103,7 @@ aliCloudTest
     INSERT INTO `user_login` VALUES (1, 'test', '1234');
     
     SET FOREIGN_KEY_CHECKS = 1;
+
+#### 疑问点
+1.负载均衡的心跳列表，默认是30s心跳一次，且每次心跳后会在下一秒再心跳一次，为了防止网络不好的情况下导致的丢包；可以设置心  
+跳间隔时间(配置详见gateway模块的bootstrap.yml中的配置及注释)。
