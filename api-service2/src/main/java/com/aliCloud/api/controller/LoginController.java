@@ -32,7 +32,7 @@ public class LoginController {
     //我是用jmter20秒内发送了2000次请求，节点1(手动sleep300毫秒)：188次，节点2：973次，节点3：911次。
     //而且根据网上的资料，如果loadbalance = "leastactive",权重的配置将会失效。
     //actives表示Activity最大的并发数，如果超过这个并发数，在invoke时将会等待。
-    @Reference(loadbalance = "leastactive",retries = 0,filter = "activelimit")
+    @Reference(loadbalance = "leastactive", retries = 0, filter = "activelimit")
     private IUserLoginProvider loginProvider;
     @Reference
     private IUserCenterProvider userCenterProvider;
