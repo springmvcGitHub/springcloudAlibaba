@@ -121,6 +121,8 @@ aliCloudTest
             - 这个就是自动感知一下，如果某个机器性能越差，那么接收的请求越少，越不活跃，此时就会给不活跃的性能差的机器更少的请求。  
         - consistanthash loadbalance:
             - 一致性 Hash 算法，相同参数的请求一定分发到一个 provider 上去，provider 挂掉的时候，会基于虚拟节点均匀分配剩余的流量，抖动不会太大。如果你需要的不是随机负载均衡，是要一类请求都到一个节点，那就走这个一致性 Hash 策略。
+![输入图片说明](https://images.gitee.com/uploads/images/2019/1024/123109_c3e6c9ec_2104538.png "1.png")
+![输入图片说明](https://images.gitee.com/uploads/images/2019/1024/123120_1aea5ac1_2104538.png "2.png")
     * 使用leastactive loadbalance需要在流量大的情况下才能看见差异。  
 2.自建startup.sh ：java -jar user-login2-1.0-SNAPSHOT.jar > /home/logs/log.txt &   
 3.linux文件关键字次数命令: grep -o 'XXXX' log.txt|wc -l 
