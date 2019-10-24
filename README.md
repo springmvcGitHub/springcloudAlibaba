@@ -125,4 +125,5 @@ aliCloudTest
 ![输入图片说明](https://images.gitee.com/uploads/images/2019/1024/123120_1aea5ac1_2104538.png "2.png")
     * 使用leastactive loadbalance需要在流量大的情况下才能看见差异。  
 2.自建startup.sh ：java -jar user-login2-1.0-SNAPSHOT.jar > /home/logs/log.txt &   
-3.linux文件关键字次数命令: grep -o 'XXXX' log.txt|wc -l 
+3.linux文件关键字次数命令: grep -o 'XXXX' log.txt|wc -l   
+4.如果同时启动user-login和user-login2会产生一些很佛性的问题，比如断点走到user-login上，但是实际的打印输出是user-login2的内容。我的解决办法就是再招个虚拟机启动user-login2，保证一个jdk就启动一个相同的生产者。
