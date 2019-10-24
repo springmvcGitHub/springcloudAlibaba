@@ -108,7 +108,7 @@ aliCloudTest
 1.负载均衡的心跳列表，默认是30s心跳一次，且每次心跳后会在下一秒再心跳一次，为了防止网络不好的情况下导致的丢包；可以设置心  
 跳间隔时间(配置详见gateway模块的bootstrap.yml中的配置及注释)。
 
-#### 踩坑记录
+#### 备注
 1.由于消费者与生产者之间dubbo方式调用默认的是随机Random访问，想要改成按照生产者的相应时间动态分发请求LeastActive。  
     * dubbo负载均衡策略
         - random loadBalance：
@@ -121,4 +121,6 @@ aliCloudTest
             - 这个就是自动感知一下，如果某个机器性能越差，那么接收的请求越少，越不活跃，此时就会给不活跃的性能差的机器更少的请求。  
         - consistanthash loadbalance:
             - 一致性 Hash 算法，相同参数的请求一定分发到一个 provider 上去，provider 挂掉的时候，会基于虚拟节点均匀分配剩余的流量，抖动不会太大。如果你需要的不是随机负载均衡，是要一类请求都到一个节点，那就走这个一致性 Hash 策略。
-    * 使用leastactive loadbalance需要在流量大的情况下才能看见差异。
+    * 使用leastactive loadbalance需要在流量大的情况下才能看见差异。  
+2.自建startup.sh ：java -jar user-login2-1.0-SNAPSHOT.jar > /home/logs/log.txt &   
+3.linux文件关键字次数命令: grep -o 'XXXX' log.txt|wc -l 
