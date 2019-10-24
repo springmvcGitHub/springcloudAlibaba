@@ -6,15 +6,15 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: 127.0.0.1:8848
+        server-addr: 192.168.80.128:8848
         enabled: true
         register-enabled: true
       config:
-        server-addr: 127.0.0.1:8848
+        server-addr: 192.168.80.128:8848
         file-extension: yaml   #nacos中定义的data-Id的扩展名必须与nacos中的配置格式一致，这里默认的是.properties
     sentinel:
       transport:
-        dashboard: 127.0.0.1:8080
+        dashboard: 192.168.80.128:8080
   application:
     name: user-api-service
   main:

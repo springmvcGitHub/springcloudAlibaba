@@ -2,7 +2,7 @@ spring:
   profiles:
     active: dev
   datasource:
-    url:  jdbc:mysql://localhost:3307/usercenter?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&failOverReadOnly=false&zeroDateTimeBehavior=convertToNull&useSSL=false&serverTimezone=Asia/Shanghai
+    url:  jdbc:mysql://172.16.75.40:3307/usercenter?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&failOverReadOnly=false&zeroDateTimeBehavior=convertToNull&useSSL=false&serverTimezone=Asia/Shanghai
     username: root
     password: 1111q!
     driver-class-name: com.mysql.cj.jdbc.Driver #使用官方最新驱动包
@@ -17,7 +17,7 @@ dubbo:
       name: dubbo   #Dubbo 服务暴露的协议配置，其中子属性 name 为协议名称，port 为协议端口（ -1 表示自增端口，从 20880 开始）
       port: -1
   registry:
-    address: spring-cloud://localhost
+    address: spring-cloud://172.16.75.40
   application:
     qos:
       enable: false

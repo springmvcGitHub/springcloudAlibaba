@@ -26,6 +26,7 @@ spring:
 user-api-service:     #该方式有个弊端，当集群节点离线后，不会自动从访问列表中剔除，自定义一个心跳服务并且用实现IPing接口可以实现动态离线
   ribbon:       #如果单独使用Ribbon，在默认情况下，不会激活Ping机制，默认的实现类为DummyPing
     listOfServers: localhost:8001, localhost:8002
-    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RoundRobinRule
+    #NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RoundRobinRule
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.WeightedResponseTimeRule    #com.netflix.loadbalancer.WeightedResponseTimeRule 是对RoundRobinRule的扩展，增加了根据实例的运行情况来计算权重,并根据权重来挑选实例，以达到更优的分配效果
     NFLoadBalancerPingClassName: com.aliCloud.api.config.HealthExamination    #自定义的心跳检测类
     NFLoadBalancerPingInterval: 5  #发送心跳的时间间隔，单位是秒
