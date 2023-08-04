@@ -1,0 +1,20 @@
+name: lesson1
+on:
+  push:
+    branches:
+    - master
+jobs:
+  my_job:
+    name: hello world
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo $PATH
+          node -v
+          npm -v
+          python --version
+          java --version
+          go version
+          mvn -v
+          docker version
+          docker-compose -v
