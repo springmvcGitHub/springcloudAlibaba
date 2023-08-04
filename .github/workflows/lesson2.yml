@@ -1,0 +1,13 @@
+name: lesson2
+on: [push]
+jobs:
+  my-job1:
+    name: test docker container
+    runs-on: ubuntu-latest
+    # - steps:
+    #   - run: node -v
+    container: 
+      image: node:8
+    steps:
+      - run: node -v
+        
