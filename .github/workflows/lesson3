@@ -1,0 +1,14 @@
+name: lesson3
+on:
+  push:
+    branches:
+    - master
+jobs:
+  my-job1:
+    name: test env
+    runs-on: ubuntu-latest
+    environment: local
+    steps:
+      - run: |
+          echo ${{ vars.T2 }}
+        
