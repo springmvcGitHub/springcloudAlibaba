@@ -12,5 +12,5 @@ jobs:
     steps:
       - run: |
           node -v
-          echo ${{ var.TT2 }}
+          echo ${{ vars.TT2 }}
         
