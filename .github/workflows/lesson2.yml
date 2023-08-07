@@ -10,5 +10,7 @@ jobs:
     container: 
       image: node:8
     steps:
-      - run: node -v
+      - run: |
+          node -v
+          echo ${{ var.TT2 }}
         
