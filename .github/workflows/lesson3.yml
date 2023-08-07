@@ -10,5 +10,5 @@ jobs:
     environment: local
     steps:
       - run: |
-          echo ${{ vars.T2 }}
+          echo ${{ vars.V1 }}
         
