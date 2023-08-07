@@ -11,6 +11,5 @@ jobs:
       image: node:8
     steps:
       - run: |
-          node -v
-          echo ${{ vars.TT2 }}
+          echo ${{ vars.TT3 }}
         
