@@ -7,7 +7,7 @@ jobs:
   my-job1:
     name: test env
     runs-on: ubuntu-latest
-    environment: local
+    environment: test
     steps:
       - run: |
           echo ${{ vars.V1 }}
