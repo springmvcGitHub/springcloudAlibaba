@@ -2,7 +2,7 @@ name: lesson1
 on:
   push:
     branches:
-    - master1
+    - master
 jobs:
   my_job:
     name: hello world
