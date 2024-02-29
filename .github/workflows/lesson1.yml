@@ -12,6 +12,7 @@ jobs:
           echo $PATH
           node -v
           npm -v
+          pnpm -v
           python --version
           java --version
           go version
